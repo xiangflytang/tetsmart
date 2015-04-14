@@ -3,6 +3,8 @@ package com.kaushik.javabrains.business;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.kaushik.javabrains.model.Product;
+
 public class ProductServiceImpl {
 	List<String> bookList=new ArrayList<>();
 	List<String> musicList=new ArrayList<>();
@@ -59,6 +61,12 @@ public class ProductServiceImpl {
 		
 		}
 		return true;
+	}
+	public List<Product> getProductsV2(){
+		List<Product>productList=new ArrayList<>();
+		productList.add(new Product("java brains book ","1234",123.12));
+		productList.add(new Product("lulu interview ","3456",50.12));
+		return productList;
 	}
 	
 }

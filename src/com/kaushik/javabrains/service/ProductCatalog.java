@@ -7,27 +7,34 @@ import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 import com.kaushik.javabrains.business.ProductServiceImpl;
+import com.kaushik.javabrains.model.Product;
 
-@WebService(name="TestMartCatalog",portName="TestMartCatalogPort"
-				,serviceName="TestMartCatalogService"
-				,targetNamespace="http://www.testmart.com")
-public class ProductCatalog {
+@WebService(endpointInterface="com.kaushik.javabrains.service.ProductCatalogInterface"
+,portName="TestMartCatalogPort"
+,serviceName="TestMartCatalogService")
+public class ProductCatalog implements ProductCatalogInterface {
 	ProductServiceImpl productService=new ProductServiceImpl();
 	
-	@WebMethod(action="fetch_Categories", operationName="fetchCategories")
+	@Override
 	public List<String>getProductCategories(){
 		return productService.getProductCategories();
 	
 	}
 	
-	@WebMethod(exclude=true)
+	@Override
 	public List<String> getProducts(String category){
 		return productService.getProducts(category);
 	}
 	
-	@WebMethod(exclude=true)
+
+	@Override
 	public boolean addProduct(String category,String product){
 		return productService.addProduct(category, product);
 	}
+	
+	@Override
+	public List<Product> getProductsV2(){
+		return productService.getProductsV2();
+	} 
 	
 }
